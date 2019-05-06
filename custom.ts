@@ -34,7 +34,7 @@ namespace LedWall {
     //% block
     export function joinGame(): void {
         // Add code here
-        radio.sendString("join:" + "device_id");
+        radio.sendString("join:" + control.deviceSerialNumber());
         basic.showString("Joining game")
     }
 
@@ -44,7 +44,7 @@ namespace LedWall {
     //% block
     export function startGame(): void {
         // Add code here
-        radio.sendString("start:" + "device_id");
+        radio.sendString("start:" + control.deviceSerialNumber());
         basic.showString("Starting game")
     }
 
