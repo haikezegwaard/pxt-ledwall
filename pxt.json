@@ -1,0 +1,14 @@
+{
+    "name": "LedWall",
+    "version": "0.1",
+    "description": "LedWall extension",
+    "license": "MIT",
+    "dependencies": {
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+        "custom.ts"
+    ],
+    "public": true
+}
