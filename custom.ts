@@ -4,6 +4,12 @@
  * Read more at https://makecode.microbit.org/blocks/custom
  */
 
+enum Direction {
+    //% block="omhoog"
+    Up,
+    //% block="omlaag"
+    Down
+}
 
 /**
  * Custom blocks
@@ -11,6 +17,135 @@
 //% weight=100 color=#0fbc11 icon=""
 namespace LedWall {
 
+    // ============================ Constants
+    let ACTION_UPDATE_SCORE = "update_score"
+    let ACTION_WIN = "win"
+    let ACTION_LOOSE = "loose"
+
+    let EVENT_UPDATE_SCORE = 667
+    let EVENT_WIN = 668
+    let EVENT_LOOSE = 669
+
+    // ============================ Blocks
+    /**
+     * Init on score update listener.
+     */
+    //% block
+    //% group=LedWall
+    export function initOnScoreUpdateListener(): void {
+        radio.onReceivedString(function (receivedString: string) {
+            if (receivedString.indexOf(ACTION_UPDATE_SCORE) === 0) {
+                let params = splitString(receivedString, ":")
+                control.raiseEvent(EVENT_UPDATE_SCORE, parseInt(params[1]))
+            }
+        })
+    }
+
+    /**
+     * Init on win listener.
+     */
+    //% block
+    //% group=LedWall
+    export function initOnWinListener(): void {
+        radio.onReceivedString(function (receivedString: string) {
+            if (receivedString.indexOf(ACTION_WIN) === 0) {
+                let params = splitString(receivedString, ":")
+                control.raiseEvent(EVENT_WIN, parseInt(params[1]))
+            }
+        })
+    }
+
+
+    /**
+     * Init on loose listener.
+     *
+     * TODO: Do we need one. If we stick to win:{user_id} then if it's not
+     * your own id, it means you have lost.
+     */
+    //% block
+    //% group=LedWall
+    export function initOnLooseListener(): void {
+        radio.onReceivedString(function (receivedString: string) {
+            if (receivedString.indexOf(ACTION_LOOSE) === 0) {
+                let params = splitString(receivedString, ":")
+                control.raiseEvent(EVENT_LOOSE, parseInt(params[1]))
+            }
+        })
+    }
+
+    /**
+     * On score update block.
+     */
+    //% block="on score $receivedString update event"
+    //% draggableParameters
+    //% group=LedWall
+    export function onScoreUpdate(cb: (receivedString: string) => void) {
+        control.onEvent(ACTION_UPDATE_SCORE, 0, function () {
+            cb("" + control.eventValue())
+        })
+    }
+
+    /**
+     * On win block.
+     */
+    //% block="on win event"
+    //% draggableParameters
+    //% group=LedWall
+    export function onWin(cb: (receivedString: string) => void) {
+        let ownId = control.deviceSerialNumber()
+        control.onEvent(ACTION_WIN, 0, function () {
+            if (ownId == control.eventValue()) {
+                cb("" + control.eventValue())
+            }
+        })
+    }
+
+    /**
+     * On loose block.
+     */
+    //% block="on loose event"
+    //% draggableParameters
+    //% group=LedWall
+    export function onLoose(cb: (receivedString: string) => void) {
+        let ownId = control.deviceSerialNumber()
+        control.onEvent(ACTION_WIN, 0, function () {
+            if (ownId != control.eventValue()) {
+                cb("" + control.eventValue())
+            }
+        })
+    }
+
+    // ================== Functions
+
+    /**
+     * Split string, since MicroBit does not have one.
+     *
+     * @param sampleInput
+     * @param delimiter
+     *
+     * @example:
+     *
+     *   let myString = "Lorem ipsum dolor sit amet"
+     *   let myArray = splitString(myString, " ")
+     *   myArray[0]  // "Lorem"
+     *   myArray[1]  // "ipsum"
+     */
+    export function splitString(sampleInput: string, delimiter: string): string[] {
+        let stringArray = ['']
+        let j = 0
+
+        for (let i = 0; i < sampleInput.length; i++) {
+            if (sampleInput.charAt(i) == delimiter) {
+                j++;
+                stringArray.push('')
+            } else {
+                stringArray[j] += sampleInput.charAt(i)
+            }
+        }
+        return stringArray
+    }
+
+    // ======================== The rest
 
     /**
      * Steers your pong bat
