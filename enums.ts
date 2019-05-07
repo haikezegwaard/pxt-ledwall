@@ -1,4 +1,4 @@
-export enum Direction {
+enum Direction {
     //% block="omhoog"
     Up,
     //% block="omlaag"
