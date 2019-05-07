@@ -1,4 +1,3 @@
-
 /**
  * Use this file to define custom functions and blocks.
  * Read more at https://makecode.microbit.org/blocks/custom
@@ -18,13 +17,13 @@ enum Direction {
 namespace LedWall {
 
     // ============================ Constants
-    let ACTION_UPDATE_SCORE = "update_score"
-    let ACTION_WIN = "win"
-    let ACTION_LOOSE = "loose"
+    let ACTION_UPDATE_SCORE: string = "update_score"
+    let ACTION_WIN: string = "win"
+    let ACTION_LOOSE: string = "loose"
 
-    let EVENT_UPDATE_SCORE = 667
-    let EVENT_WIN = 668
-    let EVENT_LOOSE = 669
+    let EVENT_UPDATE_SCORE: number = 667
+    let EVENT_WIN: number = 668
+    let EVENT_LOOSE: number = 669
 
     // ============================ Blocks
     /**
