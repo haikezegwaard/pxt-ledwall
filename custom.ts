@@ -45,24 +45,24 @@ namespace LedWall {
         basic.showString("Starting game")
     }
 
-    /**
-     * An update of your score was sent
-     */
-    //% block="on $score update event"
-    //% draggableParameters
-    //% group=LedWall
-    export function onScoreUpdate(handler: (score: string) => void) {
-
-    }
-
-    /**
-     * Game over event
-     */
-    //% block="on game over event"
-    //% group=LedWall
-    export function onGameOver(handler: () => void) {
-
-    }
+    // /**
+    //  * An update of your score was sent
+    //  */
+    // //% block="on $score update event"
+    // //% draggableParameters
+    // //% group=LedWall
+    // export function onScoreUpdate(handler: (score: string) => void) {
+    //
+    // }
+    //
+    // /**
+    //  * Game over event
+    //  */
+    // //% block="on game over event"
+    // //% group=LedWall
+    // export function onGameOver(handler: () => void) {
+    //
+    // }
 
     /**
      * Event raised when a player joins
