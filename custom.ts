@@ -4,12 +4,6 @@
  * Read more at https://makecode.microbit.org/blocks/custom
  */
 
-enum Direction {
-    //% block="omhoog"
-    Up = 1,
-    //% block="omlaag"
-    Down = 2
-}
 
 /**
  * Custom blocks

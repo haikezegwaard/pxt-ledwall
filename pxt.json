@@ -7,6 +7,9 @@
     },
     "files": [
         "README.md",
+        "enums.ts",
+        "constants.ts",
+        "blocks.ts",
         "main.ts",
         "custom.ts"
     ],
