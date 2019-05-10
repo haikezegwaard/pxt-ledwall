@@ -3,12 +3,7 @@
  * Read more at https://makecode.microbit.org/blocks/custom
  */
 
-enum Direction {
-    //% block="omhoog"
-    Up,
-    //% block="omlaag"
-    Down
-}
+
 
 /**
  * Custom blocks
@@ -22,7 +17,12 @@ namespace LedWall {
     let EVENT_LOOSE: number = 669
 
     // ============================ Blocks
-
+    enum Direction {
+        //% block="omhoog"
+        Up,
+        //% block="omlaag"
+        Down
+    }
 
     /**
      * Initialize the LedWall
