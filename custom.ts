@@ -79,7 +79,7 @@ namespace LedWall {
     //% draggableParameters
     //% group=LedWall
     export function onScoreUpdate(cb: (receivedString: string) => void) {
-        control.onEvent(ACTION_UPDATE_SCORE, 0, function () {
+        control.onEvent(EVENT_UPDATE_SCORE, 0, function () {
             cb("" + control.eventValue())
         })
     }
@@ -92,7 +92,7 @@ namespace LedWall {
     //% group=LedWall
     export function onWin(cb: (receivedString: string) => void) {
         let ownId = control.deviceSerialNumber()
-        control.onEvent(ACTION_WIN, 0, function () {
+        control.onEvent(EVENT_WIN, 0, function () {
             if (ownId == control.eventValue()) {
                 cb("" + control.eventValue())
             }
@@ -107,7 +107,7 @@ namespace LedWall {
     //% group=LedWall
     export function onLoose(cb: (receivedString: string) => void) {
         let ownId = control.deviceSerialNumber()
-        control.onEvent(ACTION_WIN, 0, function () {
+        control.onEvent(EVENT_LOOSE, 0, function () {
             if (ownId != control.eventValue()) {
                 cb("" + control.eventValue())
             }
